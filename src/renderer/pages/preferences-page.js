@@ -81,7 +81,9 @@ class PreferencesPage extends React.Component {
 
   externalPlayerPathSelector () {
     const playerPath = this.props.state.unsaved.prefs.externalPlayerPath
-    const playerName = this.props.state.getExternalPlayerName()
+    // const playerName = this.props.state.getExternalPlayerName()
+    // TODO: hack, because getExternalPlayerName uses saved.prefs and not unsaved.prefs
+    const playerName = playerPath ? require('path').basename(playerPath).split('.')[0] : 'VLC'
 
     const description = this.props.state.unsaved.prefs.openExternalPlayer
       ? `Torrent media files will always play in ${playerName}.`
